@@ -51,20 +51,20 @@ sc config WinRM start= auto
 To create the vagrant base box from this directory
 
 ```
-vagrant package --vagrantfile Vagrantfile --base VM_NAME --output BOX_NAME
+vagrant package --vagrantfile Vagrantfile --base VM_NAME --output BOX_FILE
 ```
 
 where:
 
 - VM_NAME is the name of the VM in VirtualBox
-- BOX_NAME is the name of the output file, eg. `windows.box`
+- BOX_FILE is the name of the output file, eg. `windows.box`
 
 Then to add the box to vagrant
 
 ```
-vagrant box add BOX_NAME_WITHOUT_EXTENSION BOX_NAME
+vagrant box add BOX_NAME BOX_FILE
 ```
 
 where
 
-- BOX_NAME_WITHOUT_EXTENSION could be `windows` if the BOX_NAME was `windows.box`
+- BOX_NAME could be `windows` if the BOX_FILE was `windows.box`
