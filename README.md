@@ -59,7 +59,7 @@ where:
 - VM_NAME is the name of the VM in VirtualBox
 - BOX_NAME is the name of the output file, eg. `windows.box`
 
-The to add the box to vagrant
+Then to add the box to vagrant
 
 ```
 vagrant box add BOX_NAME_WITHOUT_EXTENSION BOX_NAME
