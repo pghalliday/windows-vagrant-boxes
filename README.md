@@ -1,13 +1,13 @@
 windows-vagrant-boxes
 =====================
 
-
+Resources and guide to creating Windows vagrant base boxes for use with the [vagrant-windows](https://github.com/WinRb/vagrant-windows) plugin
 
 Prerequisites
 -------------
 
-- [VirtualBox 4.2.16](https://www.virtualbox.org/wiki/Downloads)
-- [Vagrant 1.2.7](http://downloads.vagrantup.com/)
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- [Vagrant](http://downloads.vagrantup.com/)
 - The `bindler` plugin
 
 ```
@@ -58,54 +58,3 @@ where:
 
 - VM_NAME is the name of the VM in VirtualBox
 - BOX_NAME is the name of the output file, eg. `windows.box`
-
-Building the `vagrant-windows` plugin for use with Vagrant 1.2
---------------------------------------------------------------
-
-Currently the Vagrant 1.2 compatible `vagrant-windows` plugin has not been released and is under development (last updated: 21/08/2013). To build the plugin I have forked the project and added vagrant support to make things simpler (ie. not having to maintain a ruby environment).
-
-- Clone the project fork and switch to the `vagrant-1.2` branch
-
-```
-$ git clone https://github.com/pghalliday/vagrant-windows.git
-$ cd vagrant-windows
-$ git checkout vagrant-1.2
-```
-
-- Install the required plugins using the `bindler` plugin
-
-```
-$ vagrant plugin bundle
-```
-
-- Start the vagrant VM and connect to it
-
-```
-$ vagrant up
-$ vagrant ssh
-```
-
-- (Optional) override the git protocol which if it is blocked by your firewall (this is required for the `bundle install` step)
-
-```
-vagrant@vagrant-windows:~$ git config --global url."https://".insteadOf git://
-```
-
-- Build the plugin and exit the vagrant VM
-
-```
-vagrant@vagrant-windows:~$ cd /vagrant/
-vagrant@vagrant-windows:/vagrant$ bundle install
-vagrant@vagrant-windows:/vagrant$ bundle exec rake
-```
-
-- exit the vagrant VM and install the `vagrant-windows` plugin in the host
-
-```
-vagrant@vagrant-windows:/vagrant$ exit
-$ vagrant plugin install pkg/vagrant-windows-1.2.0.gem
-```
-
-
-
-
