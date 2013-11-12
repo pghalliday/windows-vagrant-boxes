@@ -11,8 +11,8 @@ Prerequisites
 - The `bindler` plugin
 
 ```
-$ vagrant plugin install bindler
-$ vagrant bindler setup
+vagrant plugin install bindler
+vagrant bindler setup
 ```
 
 Creating windows vagrant base boxes
@@ -34,12 +34,12 @@ To prepare a Windows VM for use as a vagrant base box
 - Run a command prompt as administrator and run the following to enable `Windows Remote Management (WS-Management)` with the correct settings
 
 ```
-$ winrm quickconfig -q
-$ winrm set winrm/config/winrs @{MaxMemoryPerShellMB="512"}
-$ winrm set winrm/config @{MaxTimeoutms="1800000"}
-$ winrm set winrm/config/service @{AllowUnencrypted="true"}
-$ winrm set winrm/config/service/auth @{Basic="true"}
-$ sc config WinRM start= auto
+winrm quickconfig -q
+winrm set winrm/config/winrs @{MaxMemoryPerShellMB="512"}
+winrm set winrm/config @{MaxTimeoutms="1800000"}
+winrm set winrm/config/service @{AllowUnencrypted="true"}
+winrm set winrm/config/service/auth @{Basic="true"}
+sc config WinRM start= auto
 ```
 
 - Go to `User Account Control Settings` and select never notify to turn off UAC
@@ -48,13 +48,23 @@ $ sc config WinRM start= auto
 - Shut down the VM
 
 
-To create the vagrant base box from this directory run
+To create the vagrant base box from this directory
 
 ```
-$ vagrant package --base VM_NAME --output BOX_NAME --vagrantfile Vagrantfile
+vagrant package --vagrantfile Vagrantfile --base VM_NAME --output BOX_NAME
 ```
 
 where:
 
 - VM_NAME is the name of the VM in VirtualBox
 - BOX_NAME is the name of the output file, eg. `windows.box`
+
+The to add the box to vagrant
+
+```
+vagrant box add BOX_NAME_WITHOUT_EXTENSION BOX_NAME
+```
+
+where
+
+- BOX_NAME_WITHOUT_EXTENSION could be `windows` if the BOX_NAME was `windows.box`
